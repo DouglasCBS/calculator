@@ -17,16 +17,17 @@ let multiply = function(a, b) {
 let operate = function(operator, number1, number2) {
     switch (operator) {
         case "+":
-            return add(number1, number2);
+            return display.textContent = `${add(number1, number2)}`;
         case "-":
-            return subtract(number1, number2);
+            return display.textContent = `${subtract(number1, number2)}`;
         case "/":
-            return divide(number1, number2);
+            return display.textContent = `${divide(number1, number2)}`;
         case "*":
-            return multiply(number1, number2);
+            return display.textContent = `${multiply(number1, number2)}`;
         default:
             console.log("Invalid operator.");
     }
 };
 
+const display = document.querySelector(".display");
 

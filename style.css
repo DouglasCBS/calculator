@@ -20,6 +20,8 @@ body {
     height: 75px;
     min-width: 75px;
     flex: 1;
+    border: 1px solid black;
+    transition: all .07s;
 }
 
 .digits {
@@ -44,7 +46,6 @@ body {
 .digit {
     background-color: white;
     align-items: stretch;
-    border: 1px solid black;
 }
 
 #equal {
@@ -54,7 +55,6 @@ body {
 
 .oprtr {
     background-color: rgb(200, 143, 253);
-    border: 1px solid black;
 }
 
 .digit,
@@ -70,4 +70,8 @@ body {
 .right-column {
     display: flex;
     flex-direction: column;
+}
+
+.clicking {
+    transform: scale(1.1);
 }

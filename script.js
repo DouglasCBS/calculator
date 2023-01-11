@@ -17,17 +17,79 @@ let multiply = function(a, b) {
 let operate = function(operator, number1, number2) {
     switch (operator) {
         case "+":
-            return display.textContent = `${add(number1, number2)}`;
+            return add(number1, number2);
         case "-":
-            return display.textContent = `${subtract(number1, number2)}`;
+            return subtract(number1, number2);
         case "/":
-            return display.textContent = `${divide(number1, number2)}`;
+            return divide(number1, number2);
         case "*":
-            return display.textContent = `${multiply(number1, number2)}`;
+            return multiply(number1, number2);
         default:
             console.log("Invalid operator.");
     }
 };
 
 const display = document.querySelector(".display");
+const digit = document.querySelectorAll(".digit");
+const btn = document.querySelectorAll(".btn");
+const oprtr = document.querySelectorAll(".oprtr");
+
+btn.forEach(key => key.addEventListener("click", transitionAdd));
+btn.forEach(key => key.addEventListener("transitionend", () => key.classList.remove("clicking")));
+digit.forEach(key => key.addEventListener("click", keyDown))
+oprtr.forEach(key => key.addEventListener("click", oprtrDown))
+
+let displayValue = "";
+let temp = "";
+let tempOperator = "";
+function keyDown() {
+    displayValue += this.textContent
+    display.textContent = displayValue
+    if (displayValue.length > 10) {displayValue = ""}
+};
+
+function oprtrDown() {
+    verifyBtn(this)
+};
+
+function verifyBtn(e) {
+    if (e.textContent === "C") {
+        displayValue = "";
+        temp = "";
+        tempOperator = "";
+        display.textContent = displayValue ;
+    }
+    else if (e.textContent === "+" || e.textContent === "-" || e.textContent === "/" || e.textContent === "*") {
+        if (temp !== "" && displayValue !== "" && tempOperator !== "") {
+            executeOperation()
+            temp = displayValue
+        }
+        else if(displayValue !== "") {
+            temp = displayValue
+        }
+        displayValue = ""
+        tempOperator = e.textContent
+    }
+    else executeOperation();
+};
+
+function executeOperation() {
+    
+        if (tempOperator === "" || displayValue === "" || temp === "") {
+            displayValue = ""
+            display.textContent = "what"
+        }
+        else {displayValue = operate(tempOperator, parseInt(temp), parseInt(displayValue));
+        displayValue = +displayValue.toFixed(10);
+        display.textContent = displayValue;
+        tempOperator = "";
+        console.log(tempOperator)
+        console.log(temp)
+        console.log(displayValue)
+    }
+}
+
+function transitionAdd() {
+    return this.classList.add("clicking")
+};
 

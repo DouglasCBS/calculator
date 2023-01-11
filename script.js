@@ -83,9 +83,6 @@ function executeOperation() {
         displayValue = +displayValue.toFixed(10);
         display.textContent = displayValue;
         tempOperator = "";
-        console.log(tempOperator)
-        console.log(temp)
-        console.log(displayValue)
     }
 }
 
